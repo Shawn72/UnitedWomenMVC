@@ -1,0 +1,6 @@
+namespace UnitedWomenMVC.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
