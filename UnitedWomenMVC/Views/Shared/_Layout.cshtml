@@ -4,38 +4,296 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @using UnitedWomenMVC.Models
+    @model Members
+    
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/jquery.easy-pie-chart.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/widgets.css" rel="stylesheet" />
+    <link href="~/Content/charts.css" rel="stylesheet" />
+
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/line-icons.css" rel="stylesheet" />
+    <link href="~/Content/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content/xcharts.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-1.10.4.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        </div>*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <header class="header dark-bg">
+        <div class="toggle-nav">
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="fa fa-navicon"></i></div>
+        </div>
+
+        <!--logo start-->
+        <a href="@Url.Action("Dashboard", "Home")" class="logo" style="font-weight:bold">Web Portal</a>
+        <!--logo end-->
+
+        <div class="top-nav notification-row">
+            <!-- notificatoin dropdown start-->
+            <ul class="nav pull-right top-menu">
+
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        @*<div>
+                            Welcome
+                            <b>@Members.Name</b>
+                            <b>@HttpContext.Current.User.Identity.Name</b>
+                        </div>*@
+                        <span class="profile-ava">
+                                <img alt="" src="/image/@Members.No'.jpg'">
+                            </span>
+                        <span class="username">@Members.Name</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <li class="eborder-top">
+                            <a href="#"><i class="icon_profile"></i> My Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit"></i> Change Password</a>
+                        </li>
+
+                        <li>
+                            @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+                            {
+                                <a href="javascript:;" onclick="document.forms[0].submit();"><i class="icon_key_alt"></i>Log Out</a>
+                            }
+                        </li>
+
+                    </ul>
+
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!-- notificatoin dropdown end-->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                @*<li><img src="image/<%=Member.No %>.jpg" class="img-square img-responsive" alt="No picture!" /></li>*@
+                <li class="active">
+                    <a class="" href="@Url.Action("Dashboard", "Home")">
+                        <i class="icon_house_alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="glyphicon glyphicon-th-list"></i>
+                        <span>Statements</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="@Url.Action("Reports", "Loans", new {id=1})">Member Statement </a></li>
+                        <li><a href="@Url.Action("Reports", "Loans", new {id=2})">Deposit statement</a></li>
+                        <li><a href="@Url.Action("Reports", "Loans", new {id=3})">Loan Statement </a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-bank"></i>
+                        <span>Loan Repayment</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="#">Repayment Schedule</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-group"></i>
+                        <span>Junior Accounts</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">Accounts List</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-money"></i>
+                        <span>Holiday Savings</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">View Statement</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="" href="#">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <section id="main-content">
+        <section class="wrapper">
+            @RenderBody()
+            <hr/>
+
+            <footer>
+                <p align="center">
+                    <span>Copyright &copy; @DateTime.Now.Year <a target="_blank" href="http://www.unitedwomensacco.co.ke/" style="padding-left: 5px"> United Women Sacco Society </a></span><span> | </span>
+                    <span> Powered by: <a target="_blank" href="http://surestep.co.ke" style="padding-right: 5px">Surestep Systems and Solutions</a></span>
+                </p>
+            </footer>
+
+        </section>
+    </section>
+
+            @*@Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                @RenderSection("scripts", required: false)*@
+
+            <!-- javascripts -->
+            <script src="~/Scripts/jquery.js"></script>
+            <script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+            <script src="~/Scripts/jquery-1.8.3.min.js"></script>
+            <script type="text/javascript" src="~/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
+            <!-- bootstrap -->
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <!-- nice scroll -->
+            <script src="~/Scripts/jquery.scrollTo.min.js"></script>
+            <script src="~/Scripts/jquery.nicescroll.js" type="text/javascript"></script>
+            <!-- charts scripts -->
+            <script src="~/Scripts/jquery.knob.js"></script>
+            <script src="~/Scripts/jquery.sparkline.js" type="text/javascript"></script>
+            <script src="~/Scripts/jquery.easy-pie-chart.js"></script>
+            <script src="~/Scripts/owl.carousel.js"></script>
+            <!-- jQuery full calendar -->
+            <
+            <script src="~/Scripts/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+            <script src="~/Scripts/fullcalendar.js"></script>
+            <!-- custom select -->
+            <script src="~/Scripts/jquery.customSelect.min.js"></script>
+
+            <!--custome script for all page-->
+            <script src="~/Scripts/scripts.js"></script>
+            <script src="~/Scripts/Chart.min.js"></script>
+            <script src="~/Scripts/Chart.bundle.min.js"></script>
+
+            @*<script>
+                    var data = {
+                        labels: ["Share Capital", "Total Deposits", "Loan Balance"],
+                        datasets: [
+                            {
+                                data: [@ = Member.Share_d, @ = Member.currentshare_d, @ = Member.Oustandandingbal_d],
+                                backgroundColor: ['#0B87CA', '#5D9A27', '8F44AD']
+                            }
+                        ]
+                    };
+                    var ctx = document.getElementById("pie");
+                    var myLineChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: data
+                    });
+                </script>*@
+
+            @*<script type="text/javascript">
+                    var numberWithCommas = function (x) {
+                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    };
+
+
+                    var Deposits2017 = function () {
+                        return @=Member.totaldeposits17;
+                    };
+
+                    var Shares2017 = function () {
+                        return @=Member.currentshares17;
+                    };
+
+                var canvas = document.getElementById('bar');
+                var data = {
+                    labels: ["2017"],
+                    datasets: [
+                        {
+                            label: "Current Shares",
+                            backgroundColor: "rgba(39,174,97,0.5)",
+                            borderColor: "rgba(255,99,132,1)",
+                            borderWidth: 2,
+                            hoverBackgroundColor: "rgba(112,31,133,0.5)",
+                            hoverBorderColor: "rgba(255,99,132,1)",
+                            data: [Deposits2017()]
+                        },
+                        {
+                            label: "Total Shares",
+                            backgroundColor: "rgba(112,31,133,0.5)",
+                            borderColor: "rgba(255,99,132,1)",
+                            borderWidth: 2,
+                            hoverBackgroundColor: "rgba(39,174,97,0.5)",
+                            hoverBorderColor: "rgba(255,99,132,1)",
+                            data: [Shares2017()]
+                        }
+                    ]
+                };
+                var option = {
+                    scales: {
+                        yAxes: [{
+                            stacked: false,
+                            gridLines: {
+                                display: true,
+                                color: "rgba(255,99,132,0.2)"
+                            }
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    }
+                };
+
+                var myBarChart = Chart.Bar(canvas, {
+                    data: data,
+                    options: option
+                });
+
+                </script>*@
 </body>
 </html>

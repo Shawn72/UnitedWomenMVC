@@ -1,0 +1,140 @@
+﻿@model United_Women_Sacco_Ltd_Members_Register
+@{
+    Layout = "~/Views/Shared/_Defaults_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row row-eq-height">
+
+        <div class="col-md-4">
+
+            <div class="block block-banner">
+                <div class="banner-slider-container cycle-slideshow" data-cycle-slides="> .banner-slide">
+
+                    <!-- empty element for slider pager links -->
+                    <div class="cycle-pager"></div>
+                    <div class="banner-slide">
+                        <img src="/HomepageImages/slide1.jpg">
+                        <div class="block-overlay">
+                            <div class="block-overlay-container">
+                                <div class="block-overlay-content">
+                                    <br/><br/>
+                                    <p>
+                                        <span class="em">CloudPESA Online Banking</span></p>
+                                    <p>You can now apply loans and withdraw cash from our new Online Banking</p>
+                                    <a href="http://www.cloudpesaea.com/" class="btn link-btn blue">Learn More...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="banner-slide">
+                        <img src="/HomepageImages/slide3.jpg">
+                        <div class="block-overlay">
+                            <div class="block-overlay-container">
+                                <div class="block-overlay-content">
+                                    <br/><br/>
+                                    <p>
+                                        <span class="em">Access your SACCO Account by dialing *850# today</span></p>
+                                    <p>Joing us by registering for mobile. Visit your Sacco today!!!</p>
+                                    <a href="http://www.cloudpesaea.com/" class="btn link-btn blue">Learn More...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="banner-slide">
+                        <img src="/HomepageImages/slide2.jpg">
+                        <div class="block-overlay">
+                            <div class="block-overlay-container">
+                                <div class="block-overlay-content">
+                                    <br/><br/>
+                                    <p>
+                                        <span class="em">Mobile Banking</span></p>
+                                    <p>Download sacco mobile banking application today from playstore and start enjoying our mobile banking services.</p>
+                                    <a href="http://www.cloudpesaea.com/" class="btn link-btn blue">Learn More...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="section mobile-app-download text-center visible-xs visible-sm">
+                <p class="title">Download the Surestep Sacco App now</p>
+                <p>For easy checking of ministatement, E-loan applications, inter account transfer and other functionalities</p>
+                <a href="http://www.cloudpesaea.com/" target="_blank" rel="noopener"></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="home-form-container">
+
+                <div class="section">
+                    @*@using (@Html.BeginForm("Defaults", "Home", new {ReturnUrl =}))*@
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <img class="img img-rounded login-img" src="/siteimages/unitedwomenlogo.png"/>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="mobile-form-toggle">
+                        <br>
+                        <div class="field-error" id="dicerror">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.Label("lblError", new {@class = "text-left hidden", @style = "color:white"})
+                                    @*<span class="text-center text-danger"><small>@lblError.Text</small></span>*@
+                                    <h2 class="text-center text-primary" style="font-weight: bold;">User Login </h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="memberLogin" style="display: block">
+                        @using (Html.BeginForm("Defaults", "Home", FormMethod.Post))
+
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i> Member  No:</span>
+                                @Html.TextBoxFor(m => m.No_, "", new { @class = "form-control" })<br/>
+                                @Html.ValidationMessageFor(m => m.No_, "", new { @class = "error" })
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key"></i> Password:</span>
+                                @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control" })<br/>
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <label style="color: #f0f8ff"> Remember Me</label>
+                                @*@Html.CheckBoxFor(m => m.RememberMe)*@
+                            </div>
+                            <br/>
+
+                            <div class="input-group">
+                                <input type="submit" value="Login" class="form-control"/>
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UnitedWomenMVC.NavOData.LoansReg>
+
+@{
+    ViewBag.Title = "Loans";
+    Layout = null;
+}
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Loan_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loan_Product_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approval_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loan_Product_Type_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requested_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loan_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Repayment_Method)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Outstanding_Balance)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loan_No)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.Loan_Product_Type)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved_Amount)
+        </td>
+      
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Approval_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loan_Product_Type_Name)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Requested_Amount)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Loan_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Repayment_Method)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Outstanding_Balance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Loan_No }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

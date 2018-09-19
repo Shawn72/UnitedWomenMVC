@@ -1,0 +1,14 @@
+﻿@model IEnumerable<UnitedWomenMVC.NavOData.LoansReg>
+
+@{
+    ViewBag.Title = "DropdownLoans";
+    Layout = null;
+
+}
+@foreach (var item in Model)
+{
+    <option value=" @Html.DisplayFor(modelItem => item.Loan_No)">
+        @Html.DisplayFor(modelItem => item.Loan_Product_Type_Name)
+    </option>
+    
+}

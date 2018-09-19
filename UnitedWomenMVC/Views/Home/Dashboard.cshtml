@@ -1,0 +1,81 @@
+﻿@using UnitedWomenMVC.Models
+@model IEnumerable<Members>
+@{
+    ViewBag.Title = "Dashboard";
+
+}
+<div class="row" style="height: 20px">&nbsp;</div>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box green-bg">
+            <div class="title">My Permanent Share Capital</div>
+            <div class="count">Ksh. @Members.totaldeposits17</div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box blue-bg">
+            <div class="title">My Share Deposits</div>
+            <div class="count">Ksh. @Members.currentsavings</div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box red-bg">
+            <div class="title">My Outstanding Loans Balance</div>
+            <div class="count">
+                Ksh. @Html.Label(@Members.totalloansoutstanding, "", new { @class = "form-control" })<br />
+            </div>
+            @*<div class="count">Ksh. @Member.totalloansoutstanding</div>*@
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading text-danger">
+                <i class="fa fa-user"></i><strong style="font-family: Tahoma">Welcome, @Members.Name</strong>
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-info fade in">
+                    <h3 style="font-weight: bold; color: #ec008d; text-align: center;">
+                        &nbsp;<i class="glyphicon glyphicon-user"></i>Member Information
+                    </h3>
+                </div>
+                <table class="table table-responsive table-striped table-advance table-hover">
+
+                    <tr>
+                        <td>Member Number:</td>
+                        <td>@Members.No</td>
+                    </tr>
+                    <tr>
+                        <td>Name: </td>
+                        <td>@Members.Name </td>
+                    </tr>
+
+                    <tr>
+                        <td>Account Category: </td>
+                        <td>@Members.Accountcategory</td>
+                    </tr>
+                    <tr>
+                        <td>Email Address: </td>
+                        <td>@Members.Email</td>
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Action("Index", "Loans")
+            </div>
+        </div>
+    </div>
+
+
+</div>
